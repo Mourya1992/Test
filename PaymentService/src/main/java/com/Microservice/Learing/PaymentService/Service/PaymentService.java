@@ -2,6 +2,8 @@ package com.Microservice.Learing.PaymentService.Service;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.Random;
+import java.util.UUID;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -15,6 +17,9 @@ public class PaymentService {
 	PaymentRepository paymentRepository;
 
 	public Payment addPayment(Payment payment) {
+
+		payment.setStatus(UUID.randomUUID().toString());
+		payment.setStatus(doPayment());
 		return paymentRepository.save(payment);
 	}
 
@@ -24,5 +29,10 @@ public class PaymentService {
 
 	public List<Payment> getPayment() {
 		return paymentRepository.findAll();
+	}
+
+	public String doPayment() {
+
+		return new Random().nextBoolean() ? "Success" : "Failure";
 	}
 }
