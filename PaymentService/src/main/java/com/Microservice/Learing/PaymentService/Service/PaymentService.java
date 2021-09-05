@@ -18,7 +18,7 @@ public class PaymentService {
 
 	public Payment addPayment(Payment payment) {
 
-		payment.setStatus(UUID.randomUUID().toString());
+		payment.setTransactionId(UUID.randomUUID().toString());
 		payment.setStatus(doPayment());
 		return paymentRepository.save(payment);
 	}

@@ -25,11 +25,9 @@ public class OrderController {
 	OrderService orderService;
 
 	@GetMapping("/orders")
-	public TransactionRequest getOrderDetails() {
+	public List<OrderDetails> getOrderDetails() {
 
-		OrderDetails order = new OrderDetails(1234, "Phone", 1, 20000);
-
-		return new TransactionRequest(order, new Payment());
+		return orderService.getOrders();
 	}
 
 	@PostMapping("/placeorder")

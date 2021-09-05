@@ -1,6 +1,7 @@
 package com.Microservice.Learing.PaymentService.Controller;
 
 import java.net.URI;
+import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -29,14 +30,17 @@ public class PaymentController {
 	}
 
 	@PostMapping("/payment")
-	public ResponseEntity<Object> addPayment(@RequestBody Payment payment) {
+	public Payment addPayment(@RequestBody Payment payment) {
 
 		Payment paymentdtls = paymentService.addPayment(payment);
 
-		URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(paymentdtls.getId())
-				.toUri();
+		return paymentdtls;
+	}
 
-		return ResponseEntity.created(uri).build();
+	@GetMapping("/payments")
+	public List<Payment> addPayment() {
+
+		return paymentService.getPayment();
 	}
 
 }

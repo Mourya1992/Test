@@ -28,7 +28,7 @@ public class OrderService {
 
 		paymentdtls.setOrderId(orderDtls.getId());
 		paymentdtls.setPrice(orderDtls.getPrice());
-		Payment paymentResponse = resttemplate.postForObject("http://localhost:9001/MauryaApp/payment", paymentdtls,
+		Payment paymentResponse = resttemplate.postForObject("http://PAYMENT-SERVICE/MauryaApp/payment", paymentdtls,
 				Payment.class);
 		System.out.println(paymentResponse);
 		status = paymentResponse.getStatus().equals("Success")
