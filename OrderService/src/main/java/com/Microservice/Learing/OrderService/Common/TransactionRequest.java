@@ -15,6 +15,11 @@ public class TransactionRequest {
 
 	private OrderDetails order;
 	private Payment payment;
+	public TransactionRequest(OrderDetails order, Payment payment) {
+		super();
+		this.order = order;
+		this.payment = payment;
+	}
 	
 	
 

@@ -28,14 +28,15 @@ public class OrderService {
 
 		paymentdtls.setOrderId(orderDtls.getId());
 		paymentdtls.setPrice(orderDtls.getPrice());
-		ResponseEntity<Payment> paymentResponse = resttemplate.postForEntity("http://localhost:9001/MauryaApp/payment",
-				paymentdtls, Payment.class);
-		status = paymentResponse.getBody().getStatus().equals("Success")
+		Payment paymentResponse = resttemplate.postForObject("http://localhost:9001/MauryaApp/payment", paymentdtls,
+				Payment.class);
+		System.out.println(paymentResponse);
+		status = paymentResponse.getStatus().equals("Success")
 				? "Payment Successfull,Your order will soon arrive at ur Door Step"
 				: "Payment Failled,Please try again after sometime";
 
-		return new TransactionResponse(orderDtls.getId(), orderDtls.getPrice(),
-				paymentResponse.getBody().getTransactionId(), status);
+		return new TransactionResponse(orderDtls.getId(), orderDtls.getPrice(), paymentResponse.getTransactionId(),
+				status);
 	}
 
 	public List<OrderDetails> getOrders() {

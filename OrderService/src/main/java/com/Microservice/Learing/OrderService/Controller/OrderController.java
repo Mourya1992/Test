@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
+import com.Microservice.Learing.OrderService.Common.Payment;
 import com.Microservice.Learing.OrderService.Common.TransactionRequest;
 import com.Microservice.Learing.OrderService.Common.TransactionResponse;
 import com.Microservice.Learing.OrderService.Entity.OrderDetails;
@@ -24,13 +25,15 @@ public class OrderController {
 	OrderService orderService;
 
 	@GetMapping("/orders")
-	public List<OrderDetails> getOrderDetails() {
+	public TransactionRequest getOrderDetails() {
 
-		return orderService.getOrders();
+		OrderDetails order = new OrderDetails(1234, "Phone", 1, 20000);
+
+		return new TransactionRequest(order, new Payment());
 	}
 
 	@PostMapping("/placeorder")
-	public ResponseEntity<Object> saveOrderDetails(@RequestBody TransactionRequest transactionRequest) {
+	public ResponseEntity<TransactionResponse> saveOrderDetails(@RequestBody TransactionRequest transactionRequest) {
 		TransactionResponse transactionResponse = null;
 		if (transactionRequest != null) {
 			transactionResponse = orderService.saveOrder(transactionRequest);
@@ -38,7 +41,7 @@ public class OrderController {
 		URI location = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}")
 				.buildAndExpand(transactionResponse.getOrderId()).toUri();
 
-		return ResponseEntity.created(location).build();
+		return ResponseEntity.created(location).body(transactionResponse);
 
 	}
 
