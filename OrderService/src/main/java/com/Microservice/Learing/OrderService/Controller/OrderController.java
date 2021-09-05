@@ -19,7 +19,7 @@ import com.Microservice.Learing.OrderService.Entity.OrderDetails;
 import com.Microservice.Learing.OrderService.Service.OrderService;
 
 @RestController
-@RequestMapping("/MauryaApp")
+@RequestMapping("/orderApi")
 public class OrderController {
 	@Autowired
 	OrderService orderService;

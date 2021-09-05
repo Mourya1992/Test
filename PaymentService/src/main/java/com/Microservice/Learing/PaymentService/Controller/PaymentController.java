@@ -18,7 +18,7 @@ import com.Microservice.Learing.PaymentService.Entity.Payment;
 import com.Microservice.Learing.PaymentService.Service.PaymentService;
 
 @RestController
-@RequestMapping("/MauryaApp")
+@RequestMapping("/PayTM")
 public class PaymentController {
 	@Autowired
 	PaymentService paymentService;

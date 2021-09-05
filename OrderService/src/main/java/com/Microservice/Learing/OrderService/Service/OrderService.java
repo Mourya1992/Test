@@ -29,7 +29,7 @@ public class OrderService {
 		paymentdtls.setOrderId(orderDtls.getId());
 		paymentdtls.setPrice(orderDtls.getPrice());
 		//Rest template call,Can be modified and made using WebClient
-		Payment paymentResponse = resttemplate.postForObject("http://PAYMENT-SERVICE/MauryaApp/payment", paymentdtls,
+		Payment paymentResponse = resttemplate.postForObject("http://PAYMENT-SERVICE/PayTM/payment", paymentdtls,
 				Payment.class);
 		System.out.println(paymentResponse);
 		status = paymentResponse.getStatus().equals("Success")
