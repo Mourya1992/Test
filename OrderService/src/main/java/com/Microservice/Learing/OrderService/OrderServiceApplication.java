@@ -14,6 +14,7 @@ import org.springframework.web.client.RestTemplate;
 public class OrderServiceApplication {
 
 	public static void main(String[] args) {
+		//Test
 		SpringApplication.run(OrderServiceApplication.class, args);
 	}
 
