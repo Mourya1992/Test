@@ -3,6 +3,8 @@ package com.Microservice.Learing.OrderService.Controller;
 import java.net.URI;
 import java.util.List;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -23,15 +25,17 @@ import com.Microservice.Learing.OrderService.Service.OrderService;
 public class OrderController {
 	@Autowired
 	OrderService orderService;
+	Logger logger = LoggerFactory.getLogger(OrderController.class);
 
 	@GetMapping("/orders")
 	public List<OrderDetails> getOrderDetails() {
-
+		logger.info("getting all the order details");
 		return orderService.getOrders();
 	}
 
 	@PostMapping("/placeorder")
 	public ResponseEntity<TransactionResponse> saveOrderDetails(@RequestBody TransactionRequest transactionRequest) {
+		logger.info("placingthe order details {}",transactionRequest);
 		TransactionResponse transactionResponse = null;
 		if (transactionRequest != null) {
 			transactionResponse = orderService.saveOrder(transactionRequest);
