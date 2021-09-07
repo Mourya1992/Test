@@ -35,4 +35,9 @@ public class PaymentService {
 
 		return new Random().nextBoolean() ? "Success" : "Failure";
 	}
+
+	public Optional<Payment> findByOrderId(int orderId) {
+
+		return paymentRepository.findByOrderId(orderId);
+	}
 }
