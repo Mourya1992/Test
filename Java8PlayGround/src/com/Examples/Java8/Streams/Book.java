@@ -5,12 +5,8 @@ import java.util.List;
 public class Book {
 	private int bookId;
 	private String bookName;
-	private List<String> author;
-	private static double price=85;
-	
-	static {
-		price = 55;
-	}
+	private List<Author> author;
+	private double price = 85;
 
 	public int getBookId() {
 		return bookId;
@@ -28,25 +24,20 @@ public class Book {
 		this.bookName = bookName;
 	}
 
-	public List<String> getAuthor() {
+	public List<Author> getAuthor() {
 		return author;
 	}
 
-	public void setAuthor(List<String> author) {
+	public void setAuthor(List<Author> author) {
 		this.author = author;
 	}
 
-	public Book(int bookId, String bookName, List<String> author, double price) {
+	public Book(int bookId, String bookName, List<Author> author, double price) {
 		super();
 		this.bookId = bookId;
 		this.bookName = bookName;
 		this.author = author;
 		this.price = price;
-	}
-
-	@Override
-	public String toString() {
-		return "Book [bookId=" + bookId + ", bookName=" + bookName + ", author=" + author + ", price=" + price + "]";
 	}
 
 	public double getPrice() {
@@ -58,9 +49,12 @@ public class Book {
 	}
 
 	public Book() {
-		
+
 	}
 
-	
+	@Override
+	public String toString() {
+		return "Book [bookId=" + bookId + ", bookName=" + bookName + ", author=" + author + ", price=" + price + "]";
+	}
 
 }

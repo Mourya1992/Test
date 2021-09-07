@@ -14,14 +14,18 @@ public class Java8Demo {
 
 	public static void main(String[] args) {
 
-		List<Book> books = Arrays.asList(new Book(1234, "Sita", Arrays.asList("Amish Tripati", "ABCD", "Tri"), 250),
-				new Book(1235, "Harry Potter", Arrays.asList("K K Rowling"), 650),
-				new Book(1236, "5 AM Club", Arrays.asList("Robin Sharma"), 550));
-		
-		Predicate<Book> p1 = (book) -> book.getPrice()>300;
-		Predicate<String> p2 = name-> name.startsWith("S");
-		
-		
+		List<Book> books = Arrays.asList(
+				new Book(1234, "Sita",
+						Arrays.asList(new Author("Amish Tripathi", 6, "Amish.c@gmail.com"),
+								new Author("Pankaj Tripathi", 9, "Pankaj.c@gmail.com")),
+						250),
+				new Book(1235, "Harry Potter", Arrays.asList(new Author("JK Rowling", 9, "jkrowling.c@gmail.com")),
+						650),
+				new Book(1236, "5 AM Club", Arrays.asList(new Author("Robin Sharma", 5, "Robin.c@gmail.com")), 550));
+
+		Predicate<Book> p1 = (book) -> book.getPrice() > 300;
+		Predicate<String> p2 = name -> name.startsWith("S");
+
 		// Lambda Expression to loop over using for each
 		books.forEach(b -> System.out.println(b));
 		// Using Stream functions to loop over
@@ -44,15 +48,16 @@ public class Java8Demo {
 				return -1;
 		}).forEach(System.out::println);
 
-		books.stream().flatMap(b -> b.getAuthor().stream().filter(k -> k.contains("T"))).forEach(System.out::println);
-	
+		books.stream().flatMap(b -> b.getAuthor().stream().filter(k -> k.getName().startsWith("J")))
+				.forEach(System.out::println);
+
 		System.out.println(new Book().getPrice());
-	
-		
-		
-		Function<String,String> functionExample = (name)->  {System.out.println("the name is "+name);
-		return "hi "+name;} ;
-	
+
+		Function<String, String> functionExample = (name) -> {
+			System.out.println("the name is " + name);
+			return "hi " + name;
+		};
+
 		functionExample.apply("raju");
 	}
 

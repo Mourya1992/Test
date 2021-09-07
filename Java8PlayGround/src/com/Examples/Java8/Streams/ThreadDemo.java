@@ -57,15 +57,18 @@ public class ThreadDemo {
 
 		value.filter((v) -> v.charAt(0) == ('M')).ifPresent(System.out::print);
 
-		Book b1 = new Book(1234, "Ramayana", Arrays.asList("Valmiki"),250);
-		Book b2 = new Book(1235, "Song of Ice and Fire", Arrays.asList("George RR Martin", "David"),400);
-		Book b3 = new Book(1234, "Alchemist", Arrays.asList("Paulo Chelho", "Maurya", "Anand"),500);
-		Book b4 = new Book(1234, "The 5 AM Club", Arrays.asList("Robin Sharma"),450);
-
-		List<Book> books = Arrays.asList(b1, b2, b3, b4);
-
-		books.stream().flatMap(name -> name.getAuthor().stream()).filter(name -> name.contains("RR"))
-				.forEach(System.out::println);
+		/*
+		 * Book b1 = new Book(1234, "Ramayana", Arrays.asList("Valmiki"),250); Book b2 =
+		 * new Book(1235, "Song of Ice and Fire", Arrays.asList("George RR Martin",
+		 * "David"),400); Book b3 = new Book(1234, "Alchemist",
+		 * Arrays.asList("Paulo Chelho", "Maurya", "Anand"),500); Book b4 = new
+		 * Book(1234, "The 5 AM Club", Arrays.asList("Robin Sharma"),450);
+		 * 
+		 * List<Book> books = Arrays.asList(b1, b2, b3, b4);
+		 * 
+		 * books.stream().flatMap(name -> name.getAuthor().stream()).filter(name ->
+		 * name.contains("RR")) .forEach(System.out::println);
+		 */
 
 	}
 
