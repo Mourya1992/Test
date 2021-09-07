@@ -1,6 +1,7 @@
 package com.Microservice.Learing.OrderService.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -28,7 +29,7 @@ public class OrderService {
 
 		paymentdtls.setOrderId(orderDtls.getId());
 		paymentdtls.setPrice(orderDtls.getPrice());
-		//Rest template call,Can be modified and made using WebClient
+		// Rest template call,Can be modified and made using WebClient
 		Payment paymentResponse = resttemplate.postForObject("http://PAYMENT-SERVICE/PayTM/payment", paymentdtls,
 				Payment.class);
 		System.out.println(paymentResponse);
@@ -44,4 +45,7 @@ public class OrderService {
 		return orderRepository.findAll();
 	}
 
+	public Optional<OrderDetails> getOrderById(int id) {
+		return orderRepository.findById(id);
+	}
 }
